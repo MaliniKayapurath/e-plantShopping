@@ -8,7 +8,7 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
+  
     const calculateTotalAmount = () => {
         let total = 0;
       
@@ -20,8 +20,7 @@ const CartItem = ({ onContinueShopping }) => {
       
         return total.toFixed(2); // returns string with 2 decimals, e.g., "25.50"
       };
-      
-  };
+   
 
   const handleContinueShopping = (e) => {
     e.preventDefault(); // Prevent default button behavior if needed

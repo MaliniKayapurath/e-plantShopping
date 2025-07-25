@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
@@ -265,6 +266,9 @@ function ProductList({ onHomeClick }) {
         }));
       };
 
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart.items); 
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -303,7 +307,7 @@ function ProductList({ onHomeClick }) {
                         <div className="product-title">{plant.name}</div> {/* Display plant name */}
                         {/* Display other plant details like description and cost */}
                         <div className="product-description">{plant.description}</div> {/* Display plant description */}
-                        <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
+                        <div className="product-cost">{plant.cost}</div> {/* Display plant cost */}
                         <button
                             className="product-button"
                             onClick={() => handleAddToCart(plant)} // Handle adding plant to cart

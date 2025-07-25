@@ -9,29 +9,52 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    const calculateTotalAmount = () => {
+        let total = 0;
+      
+        cart.forEach(item => {
+          // Convert cost string like "$10.00" to number 10.00
+          const costNumber = parseFloat(item.cost.substring(1));
+          total += costNumber * item.quantity;
+        });
+      
+        return total.toFixed(2); // returns string with 2 decimals, e.g., "25.50"
+      };
+      
   };
 
   const handleContinueShopping = (e) => {
-   
+    e.preventDefault(); // Prevent default button behavior if needed
+    onContinueShopping(e); // Call the function passed as prop
   };
 
-
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      // If quantity would drop to 0, remove the item from cart
+      dispatch(removeItem(item.name));
+    }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    const costNumber = parseFloat(item.cost.substring(1)); // convert "$10.00" -> 10.00
+    return (costNumber * item.quantity).toFixed(2); // subtotal with 2 decimals
   };
-
+  
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>

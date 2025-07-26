@@ -47,6 +47,19 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.product-category-title {
+  display: inline-block;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px auto;
+  padding: 10px 20px;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  color: #333;
+}
+
 .product-list {
     display: flex;
     flex-wrap: wrap;
